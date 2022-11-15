@@ -1,14 +1,20 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "./contexts/AuthContext";
 
 const Login = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
+    const navigate = useNavigate();
+
     const { Login } = useAuth();
 
     const handleLogin = async () => {
-        await Login(email, password);
+        const user = await Login(email, password);
+        if (user){
+            navigate("/")
+        }
     }
 
     return (

@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }: any) => {
 
     useEffect(() => {
         loadTokenFromCookies();
-    })
+    }, [])
 
     const Register = async (username: string, email: string, password: string) => { 
         const { data } = await driveApi.post("/users", {
@@ -43,6 +43,10 @@ export const AuthProvider = ({ children }: any) => {
         setUser(response.data.user);
 
         registerCookie(USER_COOKIE_NAME, response.data.user.username, {
+            maxAge: 60 * 60 * 23, // valid during 23 hours
+        })
+
+        registerCookie("token", response.data.token, {
             maxAge: 60 * 60 * 23, // valid during 23 hours
         })
 
