@@ -22,10 +22,12 @@ function Home() {
 
   useEffect(() => {
       const getAllFilesFromUser = async () => {
+          setLoading(true)
           const { data } = await getFilesFromUser();
           if (data.length > 0){
             setFiles(data)
           }
+          setLoading(false)
       }
 
       getAllFilesFromUser();

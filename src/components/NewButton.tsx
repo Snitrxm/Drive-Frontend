@@ -1,11 +1,9 @@
 import { CircularProgress } from "@mui/material"
 import { useState } from "react"
-import { useAuth } from "../contexts/AuthContext"
 import { getFilesFromUser, sendFile } from "../services/api"
 
 const NewButtonComponent = ({ setFiles }: any) => {
     const [loading, setLoading] = useState<boolean>(false)
-    const { User } = useAuth();
 
     const handleFileSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
         setLoading(true)
